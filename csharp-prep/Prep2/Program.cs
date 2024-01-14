@@ -11,19 +11,53 @@ class Program
         int gradeNumber = int.Parse(userInput);
         if (gradeNumber >= 90) 
         {
+            if (gradeNumber <= 93) 
+            {
+                gradeLetter = "A-";
+            }
             gradeLetter = "A";
         }
         else if (gradeNumber >= 80)
         {
-            gradeLetter = "B";
+            if(gradeNumber >= 87)
+            {
+                gradeLetter = "B+";
+            }
+            else if (gradeNumber <= 83)
+            {
+                gradeLetter = "B-";
+            }
+            else {
+                gradeLetter = "B";
+            }
         }
         else if (gradeNumber >= 70)
         {
-            gradeLetter = "C";
+            if(gradeNumber >= 77)
+            {
+                gradeLetter = "C+";
+            }
+            else if (gradeNumber <= 73)
+            {
+                gradeLetter = "C-";
+            }
+            else {
+                gradeLetter = "C";
+            }
         }
         else if (gradeNumber >= 60)
         {
-            gradeLetter = "D";
+            if(gradeNumber >= 67)
+            {
+                gradeLetter = "D+";
+            }
+            else if (gradeNumber <= 63)
+            {
+                gradeLetter = "D-";
+            }
+            else {
+                gradeLetter = "D";
+            }
         }
         else{
             gradeLetter = "F";
