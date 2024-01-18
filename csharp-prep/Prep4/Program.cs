@@ -5,7 +5,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello Prep4 World!");
+        Console.WriteLine("Hello Prep4 World");
 
         List<int> myInts = new List<int>();
         var otherInts = new List<int>();
