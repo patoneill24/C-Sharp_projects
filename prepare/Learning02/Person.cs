@@ -1,3 +1,4 @@
+namespace Learning02;
 class Person
 {
     public string name;

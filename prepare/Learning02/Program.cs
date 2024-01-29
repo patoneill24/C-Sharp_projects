@@ -1,3 +1,5 @@
+namespace Learning02;
+
 using System;
 
 class Program
