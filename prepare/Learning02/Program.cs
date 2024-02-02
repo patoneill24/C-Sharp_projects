@@ -10,7 +10,6 @@ class Program
         
         var cars = new List<Car>();
 
-        int count = 23;
         var car = new Car();
         car.model = "Civic";
         car.make = "Honda";
