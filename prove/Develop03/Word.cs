@@ -6,7 +6,7 @@ class Word{
     private string hint;
     private int randomIndex;
     private int sumOfHiddenWords;
-    public static List<string>hiddenWords = new List<string>();
+    private static List<string>hiddenWords = new List<string>();
     public string Hide(string [] array){ 
         var random = new Random();
         randomIndex = random.Next(0,array.Length);
@@ -36,5 +36,9 @@ class Word{
         array[randomIndex] = hint;   
         hiddenWords.Add(array[randomIndex]);
         return array[randomIndex];
+    }
+
+    public static List<string> GetList(){
+        return hiddenWords;
     }
 }
