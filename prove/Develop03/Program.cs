@@ -35,7 +35,7 @@ class Program
                 foreach(string palabra in words){
                     Console.Write("{0} ", string.Join(" ", palabra));
                 }
-                if (Scripture.hiddenWords.Count == words.Length){
+                if (Word.hiddenWords.Count == words.Length){
                     keepGoing = false;
                     break;
                 }
