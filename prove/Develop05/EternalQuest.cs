@@ -7,21 +7,13 @@ public class EternalQuest{
 
     }
     private int goalNumber;
-
     private string goalChoice;
     private List<Goal> goals = new List<Goal>();
     private int totalPoints = 0;
     SimpleGoal simpleGoal = new SimpleGoal();
     EternalGoal eternalGoal = new EternalGoal();
     CheckListGoal checkListGoal = new CheckListGoal();
-
-
-    public void ObjectToString(){
-        foreach(Goal goal in goals){
-            string goalstring = goal.ToString();
-            Console.WriteLine(goalstring);
-        }
-    }
+    private int goalPoints;
 
     public void DisplayMenu(){
         Console.WriteLine($"You have {totalPoints} points\n");
@@ -35,7 +27,7 @@ public class EternalQuest{
     }
     public void GoalType(){
         Console.WriteLine("The types of Goals are: ");
-        Console.WriteLine("\t1. Simple Goal");
+        Console.WriteLine("\t1.Simple Goal");
         Console.WriteLine("\t2.Eternal Goal");
         Console.WriteLine("\t3.Checklist Goal");
         Console.Write("Which type of goal would you like to create? ");
@@ -70,12 +62,11 @@ public class EternalQuest{
         }
         Console.Write("Which goal do you want to record? ");
         goalNumber = int.Parse(Console.ReadLine());
-        int goalPoints = goals[goalNumber-1].GetPoints();
         if(goals[goalNumber-1].GetFinished() == true){
-            goalPoints = 0;
             Console.WriteLine("Goal already completed!");
         }
         goals[goalNumber-1].Record();
+        goalPoints = goals[goalNumber-1].GetPoints();
         totalPoints += goalPoints;
         return totalPoints;
     }

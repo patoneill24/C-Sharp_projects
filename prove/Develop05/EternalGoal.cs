@@ -2,9 +2,6 @@ public class EternalGoal : Goal{
     public EternalGoal(){
 
     }
-    public EternalGoal(string name, string description, int points):base(name,description,points){
-        
-    }
     public EternalGoal(string import){
         var parts = import.Split("|");
         name = parts[1];

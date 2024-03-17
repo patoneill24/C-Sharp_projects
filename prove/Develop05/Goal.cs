@@ -8,14 +8,8 @@ public abstract class Goal{
     public Goal(){
 
     }
-
     public virtual string Export(){
         return $"{name}|{description}|{points}";
-    }
-    public Goal(string name, string description, int points){
-        this.name = name;
-        this.description = description;
-        this.points = points;
     }
     public virtual void CreateGoal(){
         Console.Write("What is the name of your goal? ");
@@ -34,16 +28,9 @@ public abstract class Goal{
         return finished;
     }
 
-    public int GetPoints(){
+    public virtual int GetPoints(){
         return points;
     }
-    //public void Display(){
-    //    foreach(Goal goal in goals){
-    //        goal.DisplayGoal();
-    //    }
-    //}
     public abstract void DisplayGoal();
-    //protected abstract void Import();
-    //protected abstract void Export();
     public abstract void Record();
 }

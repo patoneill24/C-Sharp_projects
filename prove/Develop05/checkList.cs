@@ -1,3 +1,5 @@
+using System.IO.Compression;
+
 public class CheckListGoal : Goal{
     private int countNeeded;
     private int incrimentCount = 0;
@@ -6,11 +8,6 @@ public class CheckListGoal : Goal{
     public CheckListGoal(){
 
     }
-    public CheckListGoal(string name, string description, int points,int countNeeded, int bonusPoints):base(name,description,points){
-        this.countNeeded = countNeeded;
-        this.bonusPoints = bonusPoints;
-    }
-
     public CheckListGoal(string import){
         var parts = import.Split("|");
         name = parts[1];
@@ -28,24 +25,33 @@ public class CheckListGoal : Goal{
         countNeeded = int.Parse(Console.ReadLine());
         Console.Write("What is the bonus for accomplishing it that many times? ");
         bonusPoints = int.Parse(Console.ReadLine());
-        Console.WriteLine($"Congrats you set another checklist goal for {points} points");
+        Console.WriteLine($"Congrats you set another checklist goal for {points} points and {bonusPoints} bonus points");
     }
 
     public override void DisplayGoal()
     {
-        Console.WriteLine($"[{complete}] {name} ({description}) -- Currently Completed : {incrimentCount}/{countNeeded}|{finished}");
+        Console.WriteLine($"[{complete}] {name} ({description}) -- Currently Completed : {incrimentCount}/{countNeeded}");
+    }
+
+    public override int GetPoints(){
+        if(incrimentCount == countNeeded){
+            return points + bonusPoints;
+        }else if (incrimentCount > countNeeded){
+            return points = 0;
+        }else{
+            return points;
+        }
     }
     public override void Record()
     {
         incrimentCount++;
         if(incrimentCount == countNeeded){
             complete = "X";
-            points += bonusPoints;
             finished = true;
         }
     }
     public override string Export()
     {
-        return $"CG|{base.Export()}|{incrimentCount}|{countNeeded}|{bonusPoints}";
+        return $"CG|{base.Export()}|{incrimentCount}|{countNeeded}|{bonusPoints}|{finished}";
     }
 }
