@@ -2,20 +2,14 @@ using System.Collections;
 using System.ComponentModel;
 
 public  class Calendar{
-    //adds each instance of assignment class to a day of the week
-    //puts whole program together as it executes code for creating, displaying and recording assignements
-    private int pointsEarned;
+    //adds each instance of assignment class to a day of the week 
+    //and displays the days of the week and the assignments due that day
     private List<Assignment> Monday = new List<Assignment>();
     private List<Assignment> Tuesday = new List<Assignment>();
     private List<Assignment> Wednsday = new List<Assignment>();
     private List<Assignment> Thursday = new List<Assignment>();
     private List<Assignment> Friday = new List<Assignment>();
     private List<Assignment> Saturday = new List<Assignment>();
-    AssignmentCreator assignmentCreator = new AssignmentCreator();
-    CheckList checkList = new CheckList();
-    public void createAssignement(){
-        assignmentCreator.Create();
-    }
 
     public void Days(List<Assignment>allAssignments){
         foreach(Assignment assignment in allAssignments){
@@ -43,16 +37,15 @@ public  class Calendar{
         }
     }
 
-
     public void DisplayList(List<Assignment> assignments){
         foreach(Assignment assignment in assignments){
             Console.WriteLine($"\n{assignment.DisplayAssignment()}");
         }
     }
 
-    public void DisplayAssignments(){
-        Days(assignmentCreator.GetAssignments());
-        assignmentCreator.GetAssignments().Clear();
+    public void Display(){
+        Days(AssignmentCreator.GetAssignments());
+        AssignmentCreator.GetAssignments().Clear();
         Console.WriteLine("\nMonday:");
         DisplayList(Monday);
         Console.WriteLine("\nTuesday:");
@@ -67,38 +60,6 @@ public  class Calendar{
         DisplayList(Saturday);
         Console.Write("\nPress any key to continue: ");
         Console.ReadLine();
-    }
-
-    public void Display(){
-        int points = checkList.GetTotalPoints();
-        Console.WriteLine($"\nPoints: {points}");
-        DisplayAssignments();
-    }
-
-    public void Record(){
-        List<Assignment> toDo = assignmentCreator.ToDoAssignments();
-        for(var i = 0; i < toDo.Count; i++){
-            if(toDo[i].GetStatus() == true){
-                toDo.Remove(toDo[i]);
-            }
-        }
-        Assignment[] assignments = toDo.ToArray();
-        Console.WriteLine("Here are all the assignments:");
-        for(var i = 0; i < assignments.Count(); i++){
-            Console.WriteLine($"{i+1}. {assignments[i].GetName()}");
-        }
-        if(toDo.Count == 0){
-            Console.Write("\nYou don't have any assignments left to do. Good job! Press any key to continue... ");
-            Console.ReadLine();
-        }else{
-            Console.Write("Which assignment did you complete? ");
-            int completedAssignment = int.Parse(Console.ReadLine());
-            assignments[completedAssignment-1].CompleteAssignment();
-            pointsEarned = assignments[completedAssignment-1].GetPoints();
-            checkList.AddPoints(pointsEarned);
-            Console.Write("Press any key to continue...");
-            Console.ReadLine();
-        }
     }
 }
 

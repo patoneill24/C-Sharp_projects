@@ -18,7 +18,7 @@ class Program
     }
 
     static void Run(){
-        Calendar calendar = new Calendar();
+        Planner planner = new Planner();
         bool keepRunning = true;
         while(keepRunning){
             Console.Clear();
@@ -28,15 +28,15 @@ class Program
             string choice = Console.ReadLine();
             switch(choice){
                 case "1":
-                    calendar.createAssignement();
+                    planner.createAssignement();
                     break;
                 case "2":
                     Console.Clear();
-                    calendar.Display();
+                    planner.DisplayCalendar();
                     break;
                 case "3":
                     Console.Clear();
-                    calendar.Record();
+                    planner.Record();
                     break;
                 case "4":
                     keepRunning = false;

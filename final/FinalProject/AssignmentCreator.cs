@@ -12,8 +12,8 @@ public class AssignmentCreator(){
     private int bonusPoints;
     private string checkMark;
     private List<string> tools = new List<string>();
-    private List<Assignment> allAssignements = new List<Assignment>();
-    private List<Assignment> toDo = new List<Assignment>();
+    private static List<Assignment> allAssignements = new List<Assignment>();
+    private static List<Assignment> toDo = new List<Assignment>();
 
     
     public void Create(){
@@ -54,7 +54,7 @@ public class AssignmentCreator(){
                 toDo.Add(quiz);
                 break;
             case "2":
-                Console.Write("When is the roughDraft Due?(enter name of day): ");
+                Console.Write("When is the rough draft due?(enter name of day): ");
                 string essayRoughDraftDueDate = Console.ReadLine();
                 Console.Write("How many paragraphs are needed? ");
                 int numParagraphs = int.Parse(Console.ReadLine());
@@ -69,7 +69,7 @@ public class AssignmentCreator(){
                 toDo.Add(essay);
                 break;
             case "3":
-                Console.Write("When is the rough draft Due?(enter name of day): ");
+                Console.Write("When is the rough draft due?(enter name of day): ");
                 string projectRoughDraftDueDate = Console.ReadLine();
                 string tool = "";
                 while(tool != "quit"){
@@ -95,11 +95,11 @@ public class AssignmentCreator(){
         }
     }
 
-    public List<Assignment> GetAssignments(){
+    public static List<Assignment> GetAssignments(){
         return allAssignements;
     }
 
-    public List<Assignment> ToDoAssignments(){
+    public static List<Assignment> ToDoAssignments(){
         return toDo;
     }
 }   
