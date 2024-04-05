@@ -52,6 +52,7 @@ public  class Calendar{
 
     public void DisplayAssignments(){
         Days(assignmentCreator.GetAssignments());
+        assignmentCreator.GetAssignments().Clear();
         Console.WriteLine("\nMonday:");
         DisplayList(Monday);
         Console.WriteLine("\nTuesday:");
@@ -75,18 +76,18 @@ public  class Calendar{
     }
 
     public void Record(){
-        List<Assignment> allAssignments = assignmentCreator.GetAssignments();
-        for(var i = 0; i < allAssignments.Count; i++){
-            if(allAssignments[i].GetStatus() == true){
-                allAssignments.Remove(allAssignments[i]);
+        List<Assignment> toDo = assignmentCreator.ToDoAssignments();
+        for(var i = 0; i < toDo.Count; i++){
+            if(toDo[i].GetStatus() == true){
+                toDo.Remove(toDo[i]);
             }
         }
-        Assignment[] assignments = allAssignments.ToArray();
+        Assignment[] assignments = toDo.ToArray();
         Console.WriteLine("Here are all the assignments:");
         for(var i = 0; i < assignments.Count(); i++){
             Console.WriteLine($"{i+1}. {assignments[i].GetName()}");
         }
-        if(allAssignments.Count == 0){
+        if(toDo.Count == 0){
             Console.Write("\nYou don't have any assignments left to do. Good job! Press any key to continue... ");
             Console.ReadLine();
         }else{

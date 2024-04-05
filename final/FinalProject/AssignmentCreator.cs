@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 public class AssignmentCreator(){
-    //puts in values for all assignment constucor types to create instances of assignment classes
+    //puts in values for all assignment constucor types to create instances of assignment classes and it add those instances in a list 
     private string name;
     private bool completed;
     private string description;
@@ -13,6 +13,7 @@ public class AssignmentCreator(){
     private string checkMark;
     private List<string> tools = new List<string>();
     private List<Assignment> allAssignements = new List<Assignment>();
+    private List<Assignment> toDo = new List<Assignment>();
 
     
     public void Create(){
@@ -50,6 +51,7 @@ public class AssignmentCreator(){
                 }
                 Quiz quiz = new Quiz(name,dueDate,points,checkMark,description,completed,numCorrect,numQuestions,timed,timeAlloted,numAttempts,bonusPoints);
                 allAssignements.Add(quiz);
+                toDo.Add(quiz);
                 break;
             case "2":
                 Console.Write("When is the roughDraft Due?(enter name of day): ");
@@ -64,6 +66,7 @@ public class AssignmentCreator(){
                 string essayLetterGrade = "F";
                 Essay essay = new Essay(name,dueDate, points,checkMark,description,completed,essayRoughDraftDueDate,numParagraphs,wordCount,citatationType,bonusPoints,essayScore, essayLetterGrade);
                 allAssignements.Add(essay);
+                toDo.Add(essay);
                 break;
             case "3":
                 Console.Write("When is the rough draft Due?(enter name of day): ");
@@ -87,11 +90,16 @@ public class AssignmentCreator(){
                 string projectLetterGrade = "F";
                 Project project = new Project(name,dueDate,points,checkMark,description,completed,projectRoughDraftDueDate,tools,groupProject,groupSize,bonusPoints,score, projectLetterGrade);
                 allAssignements.Add(project);
+                toDo.Add(project);
                 break;
         }
     }
 
     public List<Assignment> GetAssignments(){
         return allAssignements;
+    }
+
+    public List<Assignment> ToDoAssignments(){
+        return toDo;
     }
 }   
