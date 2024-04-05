@@ -2,6 +2,8 @@ using System.Collections;
 using System.ComponentModel;
 
 public  class Calendar{
+    //puts whole program together as it executes code for creating, displaying and recording assignements
+    private int pointsEarned;
     AssignmentCreator assignment = new AssignmentCreator();
     CheckList checkList = new CheckList();
     public void createAssignement(){
@@ -13,20 +15,29 @@ public  class Calendar{
         assignment.DisplayAssignments();
     }
 
-        public void Record(){
+    public void Record(){
         List<Assignment> allAssignments = assignment.GetAssignments();
+        for(var i = 0; i < allAssignments.Count; i++){
+            if(allAssignments[i].GetStatus() == true){
+                allAssignments.Remove(allAssignments[i]);
+            }
+        }
         Assignment[] assignments = allAssignments.ToArray();
         Console.WriteLine("Here are all the assignments:");
         for(var i = 0; i < assignments.Count(); i++){
             Console.WriteLine($"{i+1}. {assignments[i].GetName()}");
         }
-        Console.Write("Which assignment did you complete? ");
-        int completedAssignment = int.Parse(Console.ReadLine());
-        assignments[completedAssignment-1].CompleteAssignment();
-        int pointsEarned = assignments[completedAssignment-1].GetPoints();
-        Console.WriteLine($"Congratulations! You completed the {assignments[completedAssignment-1].GetName()} and earned {pointsEarned} points!");
-        checkList.AddPoints(pointsEarned);
-        Console.Write("Press any key to continue...");
-        Console.ReadLine();
+        if(allAssignments.Count == 0){
+            Console.Write("\nYou don't have any assignments left to do. Good job! Press any key to continue... ");
+            Console.ReadLine();
+        }else{
+            Console.Write("Which assignment did you complete? ");
+            int completedAssignment = int.Parse(Console.ReadLine());
+            assignments[completedAssignment-1].CompleteAssignment();
+            pointsEarned = assignments[completedAssignment-1].GetPoints();
+            checkList.AddPoints(pointsEarned);
+            Console.Write("Press any key to continue...");
+            Console.ReadLine();
+        }
     }
 }

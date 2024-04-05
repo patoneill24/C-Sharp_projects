@@ -3,11 +3,13 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 public class AssignmentCreator(){
+    //puts in values for all assignment constucor types and adds instances of assignments to lists
     private string name;
     private bool completed;
     private string description;
     private int dueDate;
     private int points;
+    private int bonusPoints;
     private string checkMark;
     private List<Assignment> Monday = new List<Assignment>();
     private List<Assignment> Tuesday = new List<Assignment>();
@@ -28,6 +30,8 @@ public class AssignmentCreator(){
         dueDate = int.Parse(Console.ReadLine());
         Console.Write("How many points will you get for completeing the assignement? ");
         points = int.Parse(Console.ReadLine());
+        Console.Write("How many bonus points will you get for getting 100% on the assignement: ");
+        bonusPoints = int.Parse(Console.ReadLine());
         completed = false;
         checkMark = " ";
         Console.WriteLine("Assignment types: ");
@@ -50,12 +54,12 @@ public class AssignmentCreator(){
                     Console.Write("How much time is alloted? ");
                     timeAlloted = int.Parse(Console.ReadLine());
                 }
-                Quiz quiz = new Quiz(name,dueDate,points,checkMark,description,completed,numCorrect,numQuestions,timed,timeAlloted,numAttempts);
+                Quiz quiz = new Quiz(name,dueDate,points,checkMark,description,completed,numCorrect,numQuestions,timed,timeAlloted,numAttempts,bonusPoints);
                 Days(quiz);
                 allAssignements.Add(quiz);
                 break;
             case "2":
-                Console.Write("When is the roughDraft Due? ");
+                Console.Write("When is the roughDraft Due?(enter name of day): ");
                 string essayRoughDraftDueDate = Console.ReadLine();
                 Console.Write("How many paragraphs are needed? ");
                 int numParagraphs = int.Parse(Console.ReadLine());
@@ -63,16 +67,18 @@ public class AssignmentCreator(){
                 int wordCount = int.Parse(Console.ReadLine());
                 Console.Write("What kind of Citation is needed? ");
                 string citatationType = Console.ReadLine();
-                Essay essay = new Essay(name,dueDate, points,checkMark,description,completed,essayRoughDraftDueDate,numParagraphs,wordCount,citatationType);
+                int essayScore = 0;
+                string essayLetterGrade = "F";
+                Essay essay = new Essay(name,dueDate, points,checkMark,description,completed,essayRoughDraftDueDate,numParagraphs,wordCount,citatationType,bonusPoints,essayScore, essayLetterGrade);
                 Days(essay);
                 allAssignements.Add(essay);
                 break;
             case "3":
-                Console.Write("When is the rough draft Due? ");
+                Console.Write("When is the rough draft Due?(enter name of day): ");
                 string projectRoughDraftDueDate = Console.ReadLine();
                 string tool = "";
                 while(tool != "quit"){
-                    Console.Write("What tools are needed?(enter as many tools as needed, press enter after tool If no more tools are need, type 'quit' \n");
+                    Console.Write("What tools are needed?(enter as many tools as needed, press enter after tool. If no more tools are need, type 'quit' \n");
                     tool = Console.ReadLine();
                     if(tool != "quit"){
                         tools.Add(tool);
@@ -80,7 +86,14 @@ public class AssignmentCreator(){
                 }
                 Console.Write("Is it a group project?(true/false) ");
                 bool groupProject = bool.Parse(Console.ReadLine());
-                Project project = new Project(name,dueDate,points,checkMark,description,completed,projectRoughDraftDueDate,tools,groupProject);
+                int groupSize = 1;
+                if(groupProject == true){
+                    Console.Write("How many people are in your group? ");
+                    groupSize = int.Parse(Console.ReadLine());
+                }
+                int score = 0;
+                string projectLetterGrade = "F";
+                Project project = new Project(name,dueDate,points,checkMark,description,completed,projectRoughDraftDueDate,tools,groupProject,groupSize,bonusPoints,score, projectLetterGrade);
                 Days(project);
                 allAssignements.Add(project);
                 break;
@@ -111,7 +124,7 @@ public class AssignmentCreator(){
 
     public void DisplayList(List<Assignment> assignments){
         foreach(Assignment assignment in assignments){
-            Console.WriteLine($"{assignment.DisplayAssignment()}");
+            Console.WriteLine($"\n{assignment.DisplayAssignment()}");
         }
     }
 

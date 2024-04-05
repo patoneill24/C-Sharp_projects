@@ -3,6 +3,7 @@ using System.Configuration.Assemblies;
 
 class Program
 {
+    //runs the application and creates an instance of the calendar class 
     static void Main(string[] args)
     {
         Run();
@@ -36,7 +37,6 @@ class Program
                 case "3":
                     Console.Clear();
                     calendar.Record();
-                    //code for recording an assignement
                     break;
                 case "4":
                     keepRunning = false;
