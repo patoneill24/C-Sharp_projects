@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 public class AssignmentCreator(){
-    //puts in values for all assignment constucor types and adds instances of assignments to lists
+    //puts in values for all assignment constucor types to create instances of assignment classes
     private string name;
     private bool completed;
     private string description;
@@ -11,12 +11,6 @@ public class AssignmentCreator(){
     private int points;
     private int bonusPoints;
     private string checkMark;
-    private List<Assignment> Monday = new List<Assignment>();
-    private List<Assignment> Tuesday = new List<Assignment>();
-    private List<Assignment> Wednsday = new List<Assignment>();
-    private List<Assignment> Thursday = new List<Assignment>();
-    private List<Assignment> Friday = new List<Assignment>();
-    private List<Assignment> Saturday = new List<Assignment>();
     private List<string> tools = new List<string>();
     private List<Assignment> allAssignements = new List<Assignment>();
 
@@ -55,7 +49,6 @@ public class AssignmentCreator(){
                     timeAlloted = int.Parse(Console.ReadLine());
                 }
                 Quiz quiz = new Quiz(name,dueDate,points,checkMark,description,completed,numCorrect,numQuestions,timed,timeAlloted,numAttempts,bonusPoints);
-                Days(quiz);
                 allAssignements.Add(quiz);
                 break;
             case "2":
@@ -70,7 +63,6 @@ public class AssignmentCreator(){
                 int essayScore = 0;
                 string essayLetterGrade = "F";
                 Essay essay = new Essay(name,dueDate, points,checkMark,description,completed,essayRoughDraftDueDate,numParagraphs,wordCount,citatationType,bonusPoints,essayScore, essayLetterGrade);
-                Days(essay);
                 allAssignements.Add(essay);
                 break;
             case "3":
@@ -94,55 +86,9 @@ public class AssignmentCreator(){
                 int score = 0;
                 string projectLetterGrade = "F";
                 Project project = new Project(name,dueDate,points,checkMark,description,completed,projectRoughDraftDueDate,tools,groupProject,groupSize,bonusPoints,score, projectLetterGrade);
-                Days(project);
                 allAssignements.Add(project);
                 break;
         }
-    }
-    public void Days(Assignment assignment){
-        switch(dueDate){
-            case 1:
-                Monday.Add(assignment);
-                break;
-            case 2:
-                Tuesday.Add(assignment);
-                break;
-            case 3:
-                Wednsday.Add(assignment);
-                break;
-            case 4:
-                Thursday.Add(assignment);
-                break;
-            case 5:
-                Friday.Add(assignment);
-                break;
-            case 6:
-                Saturday.Add(assignment);
-                break;
-        }
-    }
-
-    public void DisplayList(List<Assignment> assignments){
-        foreach(Assignment assignment in assignments){
-            Console.WriteLine($"\n{assignment.DisplayAssignment()}");
-        }
-    }
-
-    public void DisplayAssignments(){
-        Console.WriteLine("\nMonday:");
-        DisplayList(Monday);
-        Console.WriteLine("\nTuesday:");
-        DisplayList(Tuesday);
-        Console.WriteLine("\nWednsday:");
-        DisplayList(Wednsday);
-        Console.WriteLine("\nThursday:");
-        DisplayList(Thursday);
-        Console.WriteLine("\nFriday:");
-        DisplayList(Friday);
-        Console.WriteLine("\nSaturday:");
-        DisplayList(Saturday);
-        Console.Write("\nPress any key to continue: ");
-        Console.ReadLine();
     }
 
     public List<Assignment> GetAssignments(){
