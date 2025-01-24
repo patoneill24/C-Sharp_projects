@@ -1,9 +1,6 @@
-# cse210-student-template
+# C# Projects
 
-This repository contains the starter code for many different projects. They are arranged as follows:
+### About
 
-* `sandbox` - An empty project that you can use to play around with any concepts you like.
-* `csharp-prep` - Starter projects for each of the C# Prep assignments.
-* `prepare` - Starter projects for each of the preparation Learning Activities.
-* `prove` - Starter projects for each of the prove Developer projects.
-* `final` - Starter projects for final project.
+Here is a repository of console applications that I developed for a class written in C#. Some of the projects include 
+a journal app, a scripture-memorizer app, a mental-health app, a goal tracker app, and a homework assignment tracker application. 
